@@ -1,38 +1,55 @@
-<title>State of Schooling in India — District UDISE Portal</title>
+<title>Atlas of Indian Schools — District UDISE Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+/* ── Civic-ledger identity: cool ink-on-paper, one madder accent, serif display ── */
 :root{
-  --bg:#f4f5f7; --panel:#ffffff; --ink:#151a21; --muted:#66707c; --faint:#93a0ad;
-  --line:#e4e7ec; --line2:#eef1f4; --accent:#2166ac; --accent-soft:#e7eff7;
-  --nodata:#dfe3e8; --pub:#2166ac; --priv:#e08214; --oth:#9aa4af;
-  --shadow:0 1px 2px rgba(16,24,40,.05),0 1px 3px rgba(16,24,40,.06);
-  --radius:12px;
+  --paper:#eff2f6; --panel:#ffffff; --panel2:#f4f6f9;
+  --ink:#1a2230; --muted:#54607a; --faint:#8a93a4;
+  --line:#e0e5ec; --line2:#edf0f4;
+  --accent:#294c86; --accent-soft:#e6ecf5;
+  --attn:#9b2c3a; --attn-soft:#f2e2e4;
+  --nodata:#dadfe6; --pub:#294c86; --priv:#b17d2c; --oth:#98a3b1;
+  --shadow:0 1px 2px rgba(20,28,44,.05),0 1px 3px rgba(20,28,44,.05);
+  --radius:8px;
+  --serif:"Charter","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
 @media (prefers-color-scheme: dark){
-  :root{ --bg:#0f1216; --panel:#171b21; --ink:#e8ecf1; --muted:#9aa6b2; --faint:#6b7885;
-    --line:#252b33; --line2:#1e232a; --accent:#6aa9e0; --accent-soft:#1c2836;
-    --nodata:#2a2f37; --pub:#6aa9e0; --priv:#e8a14a; --oth:#5c6672;
-    --shadow:0 1px 2px rgba(0,0,0,.4);}
+  :root:not([data-theme="light"]){
+    --paper:#10151c; --panel:#161d27; --panel2:#1b2531;
+    --ink:#e8ecf2; --muted:#98a3b3; --faint:#6a7481;
+    --line:#26303a; --line2:#1e2732;
+    --accent:#6e9bd8; --accent-soft:#1c2a3d;
+    --attn:#d9737e; --attn-soft:#33222a;
+    --nodata:#29313c; --pub:#6e9bd8; --priv:#d6a24e; --oth:#6c7885;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
 }
-:root[data-theme="light"]{ --bg:#f4f5f7; --panel:#fff; --ink:#151a21; --muted:#66707c; --faint:#93a0ad;
-  --line:#e4e7ec; --line2:#eef1f4; --accent:#2166ac; --accent-soft:#e7eff7; --nodata:#dfe3e8;
-  --pub:#2166ac; --priv:#e08214; --oth:#9aa4af; --shadow:0 1px 2px rgba(16,24,40,.05),0 1px 3px rgba(16,24,40,.06);}
-:root[data-theme="dark"]{ --bg:#0f1216; --panel:#171b21; --ink:#e8ecf1; --muted:#9aa6b2; --faint:#6b7885;
-  --line:#252b33; --line2:#1e232a; --accent:#6aa9e0; --accent-soft:#1c2836; --nodata:#2a2f37;
-  --pub:#6aa9e0; --priv:#e8a14a; --oth:#5c6672; --shadow:0 1px 2px rgba(0,0,0,.4);}
+:root[data-theme="dark"]{
+  --paper:#10151c; --panel:#161d27; --panel2:#1b2531;
+  --ink:#e8ecf2; --muted:#98a3b3; --faint:#6a7481;
+  --line:#26303a; --line2:#1e2732;
+  --accent:#6e9bd8; --accent-soft:#1c2a3d;
+  --attn:#d9737e; --attn-soft:#33222a;
+  --nodata:#29313c; --pub:#6e9bd8; --priv:#d6a24e; --oth:#6c7885;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
 
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
 body{overflow-x:hidden}
 a{color:var(--accent)}
-.wrap{max-width:1320px;margin:0 auto;padding:20px 20px 40px}
+.wrap{max-width:1320px;margin:0 auto;padding:22px 20px 44px}
 .tabnum{font-variant-numeric:tabular-nums}
 
-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px}
-header .title h1{font-size:22px;margin:0 0 3px;letter-spacing:-.01em}
-header .title p{color:var(--muted);font-size:13px;margin:0;max-width:70ch}
+header{display:flex;align-items:flex-start;gap:16px;margin-bottom:18px;
+  border-bottom:2px solid var(--ink);padding-bottom:14px}
+header .title .eyebrow{font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:var(--attn);
+  font-weight:700;margin-bottom:5px}
+header .title h1{font-family:var(--serif);font-size:29px;font-weight:600;margin:0 0 4px;
+  letter-spacing:-.01em;line-height:1.05;text-wrap:balance}
+header .title p{color:var(--muted);font-size:13px;margin:0;max-width:66ch}
 .themebtn{margin-left:auto;flex:none;border:1px solid var(--line);background:var(--panel);color:var(--muted);
   width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:15px;box-shadow:var(--shadow)}
 .themebtn:hover{color:var(--ink)}
@@ -50,7 +67,7 @@ header .title p{color:var(--muted);font-size:13px;margin:0;max-width:70ch}
 .yearrow{display:flex;align-items:center;gap:12px}
 input[type=range]{width:220px;accent-color:var(--accent)}
 .yearlab{font-weight:700;min-width:58px;font-size:15px}
-.dupflag{color:var(--priv);font-size:11.5px;font-weight:600;max-width:220px}
+.dupflag{color:var(--attn);font-size:11.5px;font-weight:600;max-width:220px}
 .search{position:relative}
 .search input{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;
   padding:7px 10px;font-size:12.5px;width:190px;outline:none}
@@ -86,17 +103,27 @@ input[type=range]{width:220px;accent-color:var(--accent)}
   font-size:12px;opacity:0;transition:opacity .1s;z-index:50;max-width:230px;box-shadow:0 4px 16px rgba(0,0,0,.3)}
 .tt .b{font-weight:600}.tt .s{opacity:.7;font-size:11px}
 
-.panel{padding:16px}
-.panel h2{font-size:17px;margin:0 0 2px;letter-spacing:-.01em}
-.crumbs{color:var(--muted);font-size:12px;margin-bottom:12px}
-h3{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);font-weight:600;margin:18px 0 9px}
+.panel{padding:18px}
+.panel h2{font-family:var(--serif);font-size:21px;font-weight:600;margin:0 0 2px;letter-spacing:-.01em;line-height:1.1}
+.crumbs{color:var(--muted);font-size:12px;margin-bottom:13px}
+h3{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700;margin:18px 0 9px;
+  padding-bottom:5px;border-bottom:1px solid var(--line2)}
 .subtle{color:var(--muted);font-size:12px}
 .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.tile{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
-.tile .v{font-size:20px;font-weight:700;letter-spacing:-.01em}
-.tile .l{font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:.04em;font-weight:600;margin-top:1px}
-.tile .nd{color:var(--faint);font-weight:600;font-size:14px}
+.tile{background:var(--panel2);border:1px solid var(--line);border-radius:7px;padding:10px 11px}
+.tile .v{font-family:var(--serif);font-size:23px;font-weight:600;letter-spacing:-.01em;line-height:1.05}
+.tile .l{font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.05em;font-weight:700;margin-top:2px}
+.tile .nd{color:var(--faint);font-weight:600;font-size:15px;font-family:var(--sans)}
 .tile.hl{background:var(--accent-soft);border-color:transparent}
+/* context: district value vs state & national median */
+.ctx{margin-top:7px}
+.ctxbar{position:relative;height:5px;border-radius:3px;background:var(--line);overflow:visible}
+.ctxbar .fill{position:absolute;left:0;top:0;bottom:0;background:var(--accent);border-radius:3px;opacity:.28}
+.ctxbar .mk{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;transform:translate(-50%,-50%)}
+.ctxbar .mk.dist{background:var(--attn);box-shadow:0 0 0 2px var(--panel2)}
+.ctxbar .tick{position:absolute;top:-2px;bottom:-2px;width:1.5px;transform:translateX(-50%)}
+.ctxcap{font-size:10px;color:var(--faint);margin-top:4px;display:flex;gap:9px;flex-wrap:wrap}
+.ctxcap b{color:var(--muted);font-weight:600}
 
 table{border-collapse:collapse;width:100%}
 th,td{text-align:right;padding:5px 7px;border-bottom:1px solid var(--line2);font-size:12.5px}
@@ -108,7 +135,7 @@ td.tot{font-weight:700}
 .stack{display:flex;height:22px;border-radius:6px;overflow:hidden;border:1px solid var(--line);margin-bottom:7px}
 .stack span{display:block;height:100%}
 .mglegend{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
-.pill{display:inline-flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--line);border-radius:20px;
+.pill{display:inline-flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--line);border-radius:20px;
   padding:2px 9px;font-size:11px;color:var(--muted)}
 .dot{width:9px;height:9px;border-radius:3px;display:inline-block}
 
@@ -117,7 +144,7 @@ td.tot{font-weight:700}
 .tsrow .vv{text-align:right;font-weight:700;font-size:12.5px}
 .spark{width:100%;height:30px}
 .spark rect.bar{fill:var(--accent)}
-.spark rect.barsel{fill:var(--priv)}
+.spark rect.barsel{fill:var(--attn)}
 
 .rank{display:flex;flex-direction:column;gap:3px}
 .rankrow{display:grid;grid-template-columns:18px 1fr auto;gap:8px;align-items:center;font-size:12px;
@@ -127,15 +154,15 @@ td.tot{font-weight:700}
 .rankrow .rv{font-weight:700}
 .rankrow .rs{color:var(--faint);font-size:10.5px}
 .scopetag{background:var(--accent);color:#fff;border-radius:5px;padding:1px 6px;font-size:10.5px;font-weight:600}
-#gapBtn,#ptrBtn{border-color:var(--priv);color:var(--priv);font-weight:600}
-#gapBtn.on,#ptrBtn.on{background:var(--priv);color:#fff;border-color:var(--priv)}
-.dist.gap{stroke:#c0392b;stroke-width:1.1}
+#gapBtn,#ptrBtn{border-color:var(--attn);color:var(--attn);font-weight:600}
+#gapBtn.on,#ptrBtn.on{background:var(--attn);color:#fff;border-color:var(--attn)}
+.dist.gap{stroke:var(--attn);stroke-width:1.2}
 
 .defs{padding:16px;margin-top:16px}
 .defs h3{margin:0 0 12px}
 .defgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:11px}
-.defitem{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
-.defitem .dt{font-weight:600;font-size:12.5px;margin-bottom:4px;display:flex;align-items:center;gap:7px}
+.defitem{background:var(--panel2);border:1px solid var(--line);border-radius:7px;padding:11px 13px}
+.defitem .dt{font-weight:700;font-size:12.5px;margin-bottom:4px;display:flex;align-items:center;gap:7px}
 .defitem .dt .sw{width:11px;height:11px;border-radius:3px;flex:none}
 .defitem .dd{color:var(--muted);font-size:12px;line-height:1.5}
 
@@ -149,8 +176,9 @@ footer b{color:var(--ink)}
 <div class="wrap">
 <header>
   <div class="title">
-    <h1>State of Schooling in India</h1>
-    <p>District-level UDISE / DISE school indicators mapped on 2011 Census districts, 2011‑12 to 2017‑18. Choose an indicator and year; click any district for its composition and trend.</p>
+    <div class="eyebrow">State of schooling, district by district</div>
+    <h1>Atlas of Indian Schools</h1>
+    <p>District-level UDISE / DISE school indicators on 2011 Census districts, 2011‑12 to 2017‑18. Choose an indicator and year; click any district for its composition and trend.</p>
   </div>
   <button class="themebtn" id="themebtn" title="Toggle light / dark">◑</button>
 </header>
@@ -225,7 +253,12 @@ const INDICATORS = [
 ];
 const LEVELS=[['Primary','Primary'],['Middle','Middle'],['Secondary','Secondary'],['HrSec','Higher Sec.']];
 const MGMT=[['Public','var(--pub)'],['Private','var(--priv)'],['Other','var(--oth)']];
-const RAMP=['#eef4fb','#cfe1f2','#a7c9e6','#77aad4','#4a8ac2','#2166ac','#124787'];
+// Custom ink-blue sequential ramp, tuned per theme (legend runs low→high).
+const RAMP_LIGHT=['#eaf0f6','#cfddec','#a9c4de','#7ea5cb','#5885b4','#37639b','#213f72'];
+const RAMP_DARK =['#233140','#2c4763','#355e8a','#3d76b0','#4f8fcb','#74a9db','#9fc4e9'];
+function isDark(){ const t=document.documentElement.getAttribute('data-theme');
+  return t? t==='dark' : matchMedia('(prefers-color-scheme: dark)').matches; }
+function ramp(){ return isDark()? RAMP_DARK : RAMP_LIGHT; }
 let curInd='ptr', curYearIdx=YEARS.length-1, selCC=null, scope='all', priority=null;
 const SCOPE_LABEL={all:'All schools', rgov:'Rural government schools'};
 const SCOPE_SHORT={all:'all schools', rgov:'rural govt schools'};
@@ -295,7 +328,7 @@ function scaleFor(ind,y){
   const lo=q(0.05),hi=q(0.95),md=q(0.5),meta=INDICATORS.find(i=>i.k===ind);
   return {lo,hi,md,meta,vals,
     color:v=>{ if(v==null||!isFinite(v))return null; let t=hi<=lo?.5:(v-lo)/(hi-lo);
-      t=Math.max(0,Math.min(1,t)); return RAMP[Math.round(t*(RAMP.length-1))];}};
+      t=Math.max(0,Math.min(1,t)); const R=ramp(); return R[Math.round(t*(R.length-1))];}};
 }
 
 /* ---------------- map ---------------- */
@@ -335,12 +368,40 @@ function paint(){
   document.getElementById('yrLab').textContent=y;
   document.getElementById('dupLab').textContent=DUP[y]?`no independent data — identical to ${DUP[y]}`:'';
 }
+/* context: distribution of an indicator across districts (current year & scope) */
+function statsFor(ind,y,stateName){
+  const all=[],st=[];
+  for(const f of FEATS){ const s=recAt(f.cc,y), val=s?s[ind]:null;
+    if(val==null||!isFinite(val))continue; all.push(val);
+    if(stateName && DB.districts[f.cc] && DB.districts[f.cc].state===stateName) st.push(val); }
+  if(!all.length)return null;
+  all.sort((a,b)=>a-b); st.sort((a,b)=>a-b);
+  const med=a=>a.length?a[Math.floor((a.length-1)/2)]:null;
+  const q=(a,p)=>a.length?a[Math.min(a.length-1,Math.max(0,Math.round(p*(a.length-1))))]:null;
+  return {natMed:med(all), stMed:med(st), lo:q(all,0.05), hi:q(all,0.95)};
+}
+function ctxBar(ind,val,y,state,fmt){
+  const s=statsFor(ind,y,state); if(!s||s.hi<=s.lo)return '';
+  const pos=x=>Math.max(1,Math.min(99,100*(x-s.lo)/(s.hi-s.lo)));
+  const dp=pos(val), np=pos(s.natMed), sp=s.stMed!=null?pos(s.stMed):null;
+  return `<div class="ctx"><div class="ctxbar"><div class="fill" style="width:${dp}%"></div>`+
+    `<div class="tick" style="left:${np}%;background:var(--muted)"></div>`+
+    (sp!=null?`<div class="tick" style="left:${sp}%;background:var(--accent)"></div>`:'')+
+    `<div class="mk dist" style="left:${dp}%"></div></div>`+
+    `<div class="ctxcap"><span><b class="tabnum">${fmt(s.natMed)}</b> India</span>`+
+    (s.stMed!=null?`<span><b class="tabnum">${fmt(s.stMed)}</b> state</span>`:'')+`</div></div>`;
+}
+function tileC(label,v,fmt,ind,y,state,hl){
+  let h=`<div class="tile${hl?' hl':''}"><div class="v tabnum">${v==null?`<span class="nd">no data</span>`:fmt(v)}</div><div class="l">${label}</div>`;
+  if(v!=null){ const cx=ctxBar(ind,v,y,state,fmt); if(cx)h+=cx; }
+  return h+`</div>`;
+}
 function exitPriority(){ priority=null; selCC=null; paint(); renderPanel(); }
 window.exitPriority=exitPriority;
 function buildLegend(sc){
   const el=document.getElementById('legend');
   if(!sc){ el.innerHTML='<span class="subtle">No data for this indicator / year</span>'; return; }
-  const grad=`linear-gradient(90deg,${RAMP.join(',')})`;
+  const grad=`linear-gradient(90deg,${ramp().join(',')})`;
   el.innerHTML=`<span class="name">${sc.meta.name}${scope==='rgov'?` <span class="scopetag">rural govt</span>`:''}</span>
     <div><div class="rampbar" style="background:${grad}"></div>
     <div class="ticks tabnum"><span>${sc.meta.fmt(sc.lo)}</span><span>${sc.meta.fmt(sc.md)}</span><span>${sc.meta.fmt(sc.hi)}</span></div></div>
@@ -360,8 +421,9 @@ function renderPanel(){
   const yr=recAt(selCC,y);
   const scTag = scope==='rgov'?` · <span class="scopetag">rural govt</span>`:'';
   let h=`<h2>${d.name}</h2><div class="crumbs">${d.state} · census district ${selCC} · <span class="tabnum">${y}</span>${scTag}${DUP[y]?` <span class="dupflag">· no independent data (≡ ${DUP[y]})</span>`:''}</div>`;
-  h+=`<div class="tiles">${tile('Enrolment',yr&&yr.enrol,fmtN,1)}${tile('Pupil–teacher',yr&&yr.ptr,v=>v.toFixed(1))}${tile(scope==='rgov'?'Rural govt schools':'Schools',yr&&yr.nsch,fmtN)}</div>`;
-  h+=`<div class="tiles" style="margin-top:9px">${tile('Electricity',yr&&yr.pct_elec,v=>Math.round(v)+'%')}${tile('Drinking water',yr&&yr.pct_water,v=>Math.round(v)+'%')}${tile('Girls’ toilet',yr&&yr.pct_gtoilet,v=>Math.round(v)+'%')}</div>`;
+  const st=d.state, pctf=v=>Math.round(v)+'%';
+  h+=`<div class="tiles">${tile('Enrolment',yr&&yr.enrol,fmtN,1)}${tileC('Pupil–teacher',yr&&yr.ptr,v=>v.toFixed(1),'ptr',y,st)}${tile(scope==='rgov'?'Rural govt schools':'Schools',yr&&yr.nsch,fmtN)}</div>`;
+  h+=`<div class="tiles" style="margin-top:9px">${tileC('Electricity',yr&&yr.pct_elec,pctf,'pct_elec',y,st)}${tileC('Drinking water',yr&&yr.pct_water,pctf,'pct_water',y,st)}${tileC('Girls’ toilet',yr&&yr.pct_gtoilet,pctf,'pct_gtoilet',y,st)}</div>`;
   if(scope==='rgov'){
     h+=`<h3>Rural government schools by level — <span class="tabnum">${y}</span></h3>`;
     h+= yr&&yr.lv? levelTable(yr.lv) : `<p class="subtle" style="padding:8px 0">No data for ${y}.</p>`;
@@ -453,7 +515,7 @@ function nationalView(){
     <div class="rank">${top.map(([c,v])=>rrow(c,v)).join('')}
       <div class="subtle" style="text-align:center;padding:2px 0">···</div>
       ${bot.map(([c,v])=>rrow(c,v)).join('')}</div>`; }
-  h+=`<h3>Reading the map</h3><p class="subtle">Colour = the selected indicator for the selected year (darker = higher)${rgov?', computed for rural government-managed schools only':''}. Grey districts have <b>no data</b> — never zero. Use the <b>Electricity gap</b> or <b>Teacher shortage</b> priority views to jump to the districts furthest behind.</p>`;
+  h+=`<h3>Reading the map</h3><p class="subtle">Colour encodes the selected indicator for the selected year — see the scale under the map${rgov?'; computed for rural government-managed schools only':''}. Grey districts have <b>no data</b> — never zero. Open a district for how it compares with its state and the national median, or use the <b>Electricity gap</b> / <b>Teacher shortage</b> views to jump to the districts furthest behind.</p>`;
   return h;
 }
 function wireRanks(el){ el.querySelectorAll('.rankrow').forEach(r=>r.addEventListener('click',()=>select(r.getAttribute('data-cc')))); }
@@ -508,14 +570,15 @@ function initTheme(){
   const b=document.getElementById('themebtn');
   b.addEventListener('click',()=>{ const cur=document.documentElement.getAttribute('data-theme');
     const mql=matchMedia('(prefers-color-scheme: dark)').matches;
-    const isDark = cur? cur==='dark' : mql;
-    document.documentElement.setAttribute('data-theme', isDark?'light':'dark'); });
+    const dark = cur? cur==='dark' : mql;
+    document.documentElement.setAttribute('data-theme', dark?'light':'dark');
+    paint(); renderPanel(); buildDefs(); });   // recolor the theme-aware ink ramp
 }
 
 /* ---------------- definitions ---------------- */
 function buildDefs(){
   const el=document.getElementById('defs');
-  const swatch=RAMP[4];
+  const swatch=ramp()[4];
   let items=INDICATORS.map(i=>`<div class="defitem"><div class="dt"><span class="sw" style="background:${swatch}"></span>${i.name}</div><div class="dd">${i.def}</div></div>`).join('');
   const extra=[
     ['School management','<b>Public</b> — government, local-body, tribal / social-welfare and central-government schools. <b>Private</b> — privately managed (aided + unaided). <b>Other</b> — madarsa, unrecognised or unclassified.'],
